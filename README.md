@@ -3,7 +3,6 @@
 Code to reproduce figures, simulation results, and real data analysis results from the paper 
 
 “Logistic-beta processes for modeling dependent random probabilities with beta marginals” 
-
 ## Codes for reproducing figures
 
 * Figure 1 (density of univariate logistic-beta and Polya):
