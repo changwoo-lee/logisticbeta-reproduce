@@ -201,28 +201,24 @@ ncluster_normalized = apply(ncluster_normalized, 2, mean)
 # plot ddegrid versus coclust
 g1 = ggplot(df, aes(x=dde, y=coclust)) +
   geom_line(linetype="dashed") +
-  #geom_line(aes(y=coclust_normalized), color = "red") +
   geom_hline(yintercept = mean(coclust_normalized)) +
-#  geom_hline(yintercept = 1/(M+1)) +
   ylim(c(0.4, 0.55)) + theme_bw()
-g1 = g1 + ylab(expression("Pr("~s[i]~"="~s[j]~")")) + xlab("DDE (mg/L)")
+g1 = g1 + ylab(expression("Pr("~s[i]~"="~s[j]~")")) + xlab("DDE (µg/L)")
 
 g1
 
 # plot ddegrid versus ncluster
 g2 = ggplot(df, aes(x=dde, y=ncluster)) +
   geom_line(linetype="dashed") +
-#  geom_line(aes(y=ncluster_normalized), color = "red") +
   geom_hline(yintercept = mean(ncluster_normalized)) +
-#  geom_hline(yintercept = M*digamma(M+n) - M*digamma(M)) +
   ylim(c(7,9.2)) + theme_bw()
-g2 = g2 + ylab(expression("E["~K[1023]~"]")) + xlab("DDE (mg/L)")
+g2 = g2 + ylab(expression("E["~K[1023]~"]")) + xlab("DDE (µg/L)")
 g2
 
 library(patchwork)
 g12 = (g1 / g2)
 g12
-#ggsave("figures/lbddp_priors_new.pdf", g12, width = 3, height = 3)
+#ggsave("figure/lbddp_priors_new.pdf", g12, width = 3, height = 3)
 
 
 ##
@@ -254,7 +250,7 @@ g3 = g3 + guides(colour = guide_legend(ncol = 6, byrow = T, override.aes = list(
 g3
 
 # legend title change
-g3 = g3 + labs(colour = "Feature maps \n(dashed: unnormalized)") + ylab("Feature map") + xlab("DDE (mg/L)")
+g3 = g3 + labs(colour = "Feature maps \n(dashed: unnormalized)") + ylab("Feature map") + xlab("DDE (µg/L)")
 g3
-#ggsave("figures/lbddp_basis.pdf", g3, width = 6, height = 3)
+#ggsave("figure/lbddp_basis.pdf", g3, width = 6, height = 3)
 

@@ -2,7 +2,9 @@
 
 Code to reproduce figures, simulation results, and real data analysis results from the paper 
 
-“Logistic-beta processes for modeling dependent random probabilities with beta marginals” 
+> Lee, C. J., Zito, A., Sang, H., & Dunson, D. B. (2024). Logistic-beta processes for modeling dependent random probabilities with beta marginals. arXiv preprint arXiv:2402.07048. https://arxiv.org/abs/2402.07048
+
+
 ## Codes for reproducing figures
 
 * Figure 1 (density of univariate logistic-beta and Polya):
@@ -50,7 +52,7 @@ Scenario 1, Scenario 2, Scenario 3 correspond to rho = 0.1, 0.2, 0.4, respective
 
 - Random variate generation: `rpolya()` (requires `dqrng` package for fast random number generation)
 - Density evaluation: `dpolya()` (warning: unstable!)
-- Adaptive Polya proposal: `find_polya_proposal()` to find a’, b’ with moment matching
+- Adaptive Polya proposal: `find_polya_proposal()` to find a’, b’ with moment matching criterion
 - Others: mean `epolya()`, variance `vpolya()`.
 
 3. Functions for latent LBP model for binary data

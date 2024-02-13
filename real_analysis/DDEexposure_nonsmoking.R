@@ -245,14 +245,14 @@ cdf_plot_1=
   geom_line(color = "#00BFC4") +
   geom_point(aes(x, y), shape = 108, alpha = 1, size = 1, data = data.frame(x = x_original, y= rep(0, length(x_original))) ) +
   geom_ribbon(aes(ymin = ylo, ymax = yup), alpha = 0.2, fill = "#00BFC4") + ylim(0,1) +
-  xlab("DDE (mg/L)") + ylab("Probability of preterm birth") + theme_light() +
+  xlab("DDE (µg/L)") + ylab("Probability of preterm birth") + theme_light() +
   facet_wrap(~setting)
 cdf_plot_2 =
   ggplot(cdf_LSBP_df, aes(x = xgrid_original, y = y)) +
   geom_line(color = "#F8766D") +
   geom_point(aes(x, y), shape = 108, alpha = 1, size = 1, data = data.frame(x = x_original, y= rep(0, length(x_original))) ) +
   geom_ribbon(aes(ymin = ylo, ymax = yup), alpha = 0.2, fill = "#F8766D") + ylim(0,1) +
-  xlab("DDE (mg/L)") + ylab("Probability of preterm birth") + theme_light() +
+  xlab("DDE (µg/L)") + ylab("Probability of preterm birth") + theme_light() +
   facet_wrap(~setting)
 
 cdf_plot_12 = cdf_plot_1 / cdf_plot_2
