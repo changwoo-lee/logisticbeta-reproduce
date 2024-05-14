@@ -2,7 +2,7 @@
 
 Code to reproduce figures, simulation results, and real data analysis results from the paper 
 
-> Lee, C. J., Zito, A., Sang, H., & Dunson, D. B. (2024). Logistic-beta processes for modeling dependent random probabilities with beta marginals. arXiv preprint arXiv:2402.07048. https://arxiv.org/abs/2402.07048
+> Lee, C. J., Zito, A., Sang, H., & Dunson, D. B. (2024). Logistic-beta processes for dependent random probabilities with beta marginals. arXiv preprint arXiv:2402.07048. https://arxiv.org/abs/2402.07048
 
 
 ## Codes for reproducing figures
@@ -14,16 +14,16 @@ Code to reproduce figures, simulation results, and real data analysis results fr
 * Figure 3 (LBP prior example and latent LBP):
   - `figure/figure_3.R`
 * Figure 4 (correlation lower bounds of bivariate betas and LB-DDP):
-  - `figure/figure_4_and_A1.R`
+  - `figure/figure_4_and_scatter.R`
 * Figure 5 (preterm birth probability plot for smoking group): 
   - `real_analysis/DDEexposure_smoking.R`
-* Figure 6 (preterm birth probability plot for nonsmoking group):
-  - `real_analysis/DDEexposure_nonsmoking.R`
-* Figure A.1 (correlation lower bounds of LB-DDP and bivariate
+* Figure B.1 (correlation lower bounds of LB-DDP and bivariate
   scatterplots): 
-  - `figure/figure_4_and_A1.R`
-* Figure C.1 (effect of feature map normalization):
-  - `figure/figure_C1.R`
+  - `figure/figure_4_and_scatter.R`
+* Figure D.1 (effect of feature map normalization):
+  - `figure/figure_basis.R`
+* Figure D.2 (preterm birth probability plot for nonsmoking group):
+  - `real_analysis/DDEexposure_nonsmoking.R`
 
 ## Codes for reproducing simulation results
 

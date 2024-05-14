@@ -3,12 +3,12 @@
 
 rm(list=ls())
 
-source("R/polya.R")
-source("R/lb.R")
+source("../R/polya.R")
+source("../R/lb.R")
 
 # calculate correlation of logisitc-transformed LB (thus having beta marginals) using monte carlo
 # rhovec: numeric vector of correlation parameter between two points (R(x_1, x_2))
-corr_logiLB<- function(rhogrid, a, b, nsim = 1000, nsize = 1000){
+corr_logiLB<- function(rhogrid, a, b, nsim = 5000, nsize = 1000){
   # check all rhogrid is within -1 and 1
   if(any(abs(rhogrid) > 1)){
     stop("all rhogrid must be within -1 and 1")
@@ -56,7 +56,7 @@ corr_logiLB<- function(rhogrid, a, b, nsim = 1000, nsize = 1000){
 
 # calculate correlation of logisitc-transformed LB (thus having beta marginals) using monte carlo
 # rhovec: numeric vector of correlation parameter between two points (R(x_1, x_2))
-E12_logiLB<- function(rhogrid, a, b, nsim = 1000, nsize = 1000){
+E12_logiLB<- function(rhogrid, a, b, nsim = 5000, nsize = 1000){
   # check all rhogrid is within -1 and 1
   if(any(abs(rhogrid) > 1)){
     stop("all rhogrid must be within -1 and 1")
@@ -104,7 +104,7 @@ E12_logiLB<- function(rhogrid, a, b, nsim = 1000, nsize = 1000){
 
 # calculate correlation of logisitc-transformed LB (thus having beta marginals) using monte carlo
 # rhovec: numeric vector of correlation parameter between two points (R(x_1, x_2))
-E12_copula<- function(rhogrid, a, b, nsim = 1000, nsize = 1000){
+E12_copula<- function(rhogrid, a, b, nsim = 5000, nsize = 1000){
   # check all rhogrid is within -1 and 1
   if(any(abs(rhogrid) > 1)){
     stop("all rhogrid must be within -1 and 1")
@@ -213,7 +213,17 @@ g = ggplot(df, aes(x = bgrid, y = value, col = variable, linetype=variable)) + g
   scale_color_manual(values = c("black", "red", "purple", "blue"), labels = c("(i) LB-DDP", "(ii) AR1sq-DDP","(iii) tsDDP (inf: indep. beta)","(iv) Copula-based DDP (inf: Fréchet lower bound)"), breaks = c("temp1", "temp2", "temp3", "temp4")) +
   scale_linetype_manual(values = c(1,2,3,4), labels = c("(i) LB-DDP", "(ii) AR1sq-DDP","(iii) tsDDP (inf: indep. beta)","(iv) Copula-based DDP (inf: Fréchet lower bound)"), breaks = c("temp1", "temp2", "temp3", "temp4"))+
   scale_x_continuous(trans = "log2", breaks =c(1/8, 1/4, 1/2, 1, 2, 4, 8, 16), labels = c("1/8", "1/4","1/2","1","2","4","8","16")) + ylim(-1,1) + xlab("b") + ylab(TeX("inf Corr$(V_h(x_i), V_h(x_j))$"))+
-  labs(color = "", linetype="") + theme_bw() #+ theme(legend.position = "top")
+  labs(color = "", linetype="") + theme_bw() + theme(text = element_text(family = "serif"))#+ theme(legend.position = "top")
+g
+
+mylabel = c("M1 (logistic-beta)", "M2 (DeYoreo & Kottas, 2018)", "M3 (Nieto-Barajas et al., 2012)", "M4 (copula-based)")
+
+g = ggplot(df, aes(x = bgrid, y = value, col = variable, linetype=variable)) + geom_line() +
+  theme_bw() + theme(legend.position = "bottom") +
+  scale_color_manual(values = c("black", "red", "purple", "blue"), labels = mylabel, breaks = c("temp1", "temp2", "temp3", "temp4")) +
+  scale_linetype_manual(values = c(1,2,3,4), labels = mylabel, breaks = c("temp1", "temp2", "temp3", "temp4"))+
+  scale_x_continuous(trans = "log2", breaks =c(1/8, 1/4, 1/2, 1, 2, 4, 8, 16), labels = c("1/8", "1/4","1/2","1","2","4","8","16")) + ylim(-1,1) + xlab("b") + ylab(TeX("inf Corr$(V_h(x_i), V_h(x_j))$"))+
+  labs(color = "", linetype="") + theme_bw() + theme(text = element_text(family = "serif"))#+ theme(legend.position = "top")
 g
 
 
@@ -229,14 +239,24 @@ g2 = ggplot(df2, aes(x = bgrid, y = value, col = variable, linetype=variable)) +
   scale_color_manual(values = c("black", "red", "purple", "blue"), labels = c("(i) LB-DDP", "(ii) AR1sq-DDP","(iii) tsDDP (inf: indep. beta)","(iv) Copula-based DDP (inf: Fréchet lower bound)"), breaks = c("temp1", "temp2", "temp3", "temp4")) +
   scale_linetype_manual(values = c(1,2,3,4), labels = c("(i) LB-DDP", "(ii) AR1sq-DDP","(iii) tsDDP (inf: indep. beta)","(iv) Copula-based DDP (inf: Fréchet lower bound)"), breaks = c("temp1", "temp2", "temp3", "temp4"))+
   scale_x_continuous(trans = "log2", breaks =c(1/8, 1/4, 1/2, 1, 2, 4, 8, 16), labels = c("1/8", "1/4","1/2","1","2","4","8","16")) + ylim(0,1) + xlab("b") + ylab(TeX("inf Corr$(G_{x_i}(B), G_{x_j}(B))$"))+
-  labs(color = "", linetype="") + theme_bw() #+ theme(legend.position = "top")
+  labs(color = "", linetype="") + theme_bw() + theme(text = element_text(family = "serif"))
+#+ theme(legend.position = "top")
+g2
+# 4 linetypes: solid, dotted, twodash, longdash
+g2 = ggplot(df2, aes(x = bgrid, y = value, col = variable, linetype=variable)) + geom_line() +
+  theme_bw() + theme(legend.position = "bottom") +
+  scale_color_manual(values = c("black", "red", "purple", "blue"), labels = mylabel, breaks = c("temp1", "temp2", "temp3", "temp4")) +
+  scale_linetype_manual(values = c(1,2,3,4), labels = mylabel, breaks = c("temp1", "temp2", "temp3", "temp4"))+
+  scale_x_continuous(trans = "log2", breaks =c(1/8, 1/4, 1/2, 1, 2, 4, 8, 16), labels = c("1/8", "1/4","1/2","1","2","4","8","16")) + ylim(0,1) + xlab("b") + ylab(TeX("inf Corr$(G_{x_i}(B), G_{x_j}(B))$"))+
+  labs(color = "", linetype="") + theme_bw() + theme(text = element_text(family = "serif"))
+#+ theme(legend.position = "top")
 g2
 
 
 library(ggpubr)
 g12 = ggarrange(g, g2, ncol = 2, common.legend = T)
 g12
-#ggsave(g12, filename = "figures/corr_beta_ddp.pdf", width = 8, height = 2.5)
+ggsave(g12, filename = "corr_beta_ddp_newlegend.pdf", width = 8, height = 2.5)
 
 
 
@@ -245,7 +265,17 @@ g = ggplot(df2, aes(x = bgrid, y = value, col = variable, linetype=variable)) + 
   scale_color_manual(values = c("black", "red", "purple", "blue"), labels = c("(i) LB-DDP", "(ii) AR1sq-DDP","(iii) tsDDP","(iv) Copula-based DDP"), breaks = c("temp1", "temp2", "temp3", "temp4")) +
   scale_linetype_manual(values = c(1,2,3,4), labels = c("(i) LB-DDP", "(ii) AR1sq-DDP","(iii) tsDDP","(iv) Copula-based DDP"), breaks = c("temp1", "temp2", "temp3", "temp4"))+
   scale_x_continuous(trans = "log2", breaks =c(1/8, 1/4, 1/2, 1, 2, 4, 8, 16), labels = c("1/8", "1/4","1/2","1","2","4","8","16")) + ylim(0,1) + xlab("b") + ylab(TeX("inf Corr$(G_{x_i}(B), G_{x_j}(B))$"))+
-  labs(color = "", linetype="") + theme_bw() + theme(legend.position = "top")
+  labs(color = "", linetype="") + theme_bw() + theme(legend.position = "top", text = element_text(family = "serif"))
+
+
+g = ggplot(df2, aes(x = bgrid, y = value, col = variable, linetype=variable)) + geom_line() +
+  theme_bw() + theme(legend.position = "bottom") +
+  scale_color_manual(values = c("black", "red", "purple", "blue"), labels = mylabel, breaks = c("temp1", "temp2", "temp3", "temp4")) +
+  scale_linetype_manual(values = c(1,2,3,4), labels = mylabel, breaks = c("temp1", "temp2", "temp3", "temp4"))+
+  scale_x_continuous(trans = "log2", breaks =c(1/8, 1/4, 1/2, 1, 2, 4, 8, 16), labels = c("1/8", "1/4","1/2","1","2","4","8","16")) + ylim(0,1) + xlab("b") + ylab(TeX("inf Corr$(G_{x_i}(B), G_{x_j}(B))$"))+
+  labs(color = "", linetype="") + theme_bw() + theme(legend.position = "top", text = element_text(family = "serif"))
+
+
 #which(bgrid==2)
 g = g + geom_point(data=data.frame(bgrid = 2, variable = "temp1", value = mean(df2[c(51,52),3])) , colour="black", shape=1, size=2, stroke=1.5)
 g = g + geom_point(data=data.frame(bgrid = 2, variable = "temp1", value = mean(df2[c(51,52) + 89,3])) , colour="red", shape=1, size=2, stroke=1.5)
@@ -253,9 +283,8 @@ g = g + geom_point(data=data.frame(bgrid = 2, variable = "temp1", value = mean(d
 g = g + geom_point(data=data.frame(bgrid = 2, variable = "temp1", value = mean(df2[c(51,52) + 89*3,3])) , colour="blue", shape=1, size=2, stroke=1.5)
 
 g
-
-#ggsave(g, filename = "figures/corr_beta_ddp_circle.pdf", width = 6, height = 3)
-
+ggsave(g, filename = "corr_beta_ddp_circle_newlegend.pdf", width = 6, height = 3)
+#ggsave(g, filename = "corr_beta_ddp_circle_nolegend.eps", width = 6, height = 3)
 
 
 
@@ -301,7 +330,7 @@ p4 = ggplot(df44, aes(x = x, y = y)) + geom_point( color = "blue", alpha = 0.3) 
 
 library(patchwork)
 # # 2 by 2
-p1234 = p1 + p2 + p3 + p4 + plot_layout(ncol = 2, nrow = 2) + plot_annotation(tag_levels = "i") #+ plot_annotation(subtitle = c("Corresponding bivariate betas with Beta(1,2) marginals"), tag_levels = "i")
+p1234 = p1 + p2 + p3 + p4 + plot_layout(ncol = 2, nrow = 2) #+ plot_annotation(tag_levels = "i") #+ plot_annotation(subtitle = c("Corresponding bivariate betas with Beta(1,2) marginals"), tag_levels = "i")
 p1234
 
-#ggsave(p1234, filename = "figures/corr_beta_scatter.pdf", width = 4, height = 4)
+#ggsave(p1234, filename = "corr_beta_scatter_newlegend.pdf", width = 4, height = 4)
