@@ -76,7 +76,7 @@ Scenario 1, Scenario 2, Scenario 3 correspond to rho = 0.1, 0.2, 0.4, respective
 
 ## Example 
 
-```
+```R
 # reproduce figure 3, latent LBP model with binary data
 rm(list = ls())
 source("R/polya.R")
