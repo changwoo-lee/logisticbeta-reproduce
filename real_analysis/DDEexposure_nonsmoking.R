@@ -219,17 +219,18 @@ cdf_LBDDP_set3_df <- data.frame(xgrid_original,
 
 
 
-cdf_LBDDP_set1_df$setting = "LB-DDP, setting 1, smoking"
-cdf_LBDDP_set2_df$setting = "LB-DDP, setting 2, smoking"
-cdf_LBDDP_set3_df$setting = "LB-DDP, setting 3, smoking"
+
+cdf_LBDDP_set1_df$setting = "Logistic-beta, setting 1"
+cdf_LBDDP_set2_df$setting = "Logistic-beta, setting 2"
+cdf_LBDDP_set3_df$setting = "Logistic-beta, setting 3"
 cdf_LBDDP_set1_df$model = "LBDDP"
 cdf_LBDDP_set2_df$model = "LBDDP"
 cdf_LBDDP_set3_df$model = "LBDDP"
 
 
-cdf_LSBP_set1_df$setting = "LSBP, setting 1, smoking"
-cdf_LSBP_set2_df$setting = "LSBP, setting 2, smoking"
-cdf_LSBP_set3_df$setting = "LSBP, setting 3, smoking"
+cdf_LSBP_set1_df$setting = "Logit stick-breaking, setting 1"
+cdf_LSBP_set2_df$setting = "Logit stick-breaking, setting 2"
+cdf_LSBP_set3_df$setting = "Logit stick-breaking, setting 3"
 cdf_LSBP_set1_df$model = "LSBP"
 cdf_LSBP_set2_df$model = "LSBP"
 cdf_LSBP_set3_df$model = "LSBP"

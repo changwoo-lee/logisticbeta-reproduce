@@ -10,11 +10,11 @@ library(splines) # For computing the natural B-splines basis
 library(logitnorm) # prior property comparison
 
 
-source('R/polya.R')
-source('R/dmvn_lowrankstr.R')
+source('../R/polya.R')
+source('../R/dmvn_lowrankstr.R')
 # LBDDP
-source("R/LBDDP_basis.R")
-source("R/LSBP_basis.R")
+source("../R/LBDDP_basis.R")
+source("../R/LSBP_basis.R")
 
 ######## 1. Prepare data ###############
 
@@ -51,7 +51,7 @@ Basis_normalized = Basis/sqrt(rowSums(Basis^2))
 
 nsave = 30000
 nburn = 5000
-run = FALSE
+run = T
 if(run){
 
   ########## prior setting 1 ############################################
@@ -155,8 +155,8 @@ save.image("DDEexposure_smoking.RData")
 fit_LBDDP_set2$t_mcmc
 fit_LSBP_set2$t_mcmc
 
-source("R/LBDDP_postprocess.R")
-source("R/LSBP_postprocess.R")
+source("../R/LBDDP_postprocess.R")
+source("../R/LSBP_postprocess.R")
 
 ######## 2. Posterior predictive samples ###############
 
@@ -219,17 +219,17 @@ cdf_LBDDP_set3_df <- data.frame(xgrid_original,
 
 
 
-cdf_LBDDP_set1_df$setting = "LB-DDP, setting 1, smoking"
-cdf_LBDDP_set2_df$setting = "LB-DDP, setting 2, smoking"
-cdf_LBDDP_set3_df$setting = "LB-DDP, setting 3, smoking"
+cdf_LBDDP_set1_df$setting = "Logistic-beta, setting 1"
+cdf_LBDDP_set2_df$setting = "Logistic-beta, setting 2"
+cdf_LBDDP_set3_df$setting = "Logistic-beta, setting 3"
 cdf_LBDDP_set1_df$model = "LBDDP"
 cdf_LBDDP_set2_df$model = "LBDDP"
 cdf_LBDDP_set3_df$model = "LBDDP"
 
 
-cdf_LSBP_set1_df$setting = "LSBP, setting 1, smoking"
-cdf_LSBP_set2_df$setting = "LSBP, setting 2, smoking"
-cdf_LSBP_set3_df$setting = "LSBP, setting 3, smoking"
+cdf_LSBP_set1_df$setting = "Logit stick-breaking, setting 1"
+cdf_LSBP_set2_df$setting = "Logit stick-breaking, setting 2"
+cdf_LSBP_set3_df$setting = "Logit stick-breaking, setting 3"
 cdf_LSBP_set1_df$model = "LSBP"
 cdf_LSBP_set2_df$model = "LSBP"
 cdf_LSBP_set3_df$model = "LSBP"
@@ -246,18 +246,18 @@ cdf_plot_1=
   geom_point(aes(x, y), shape = 108, alpha = 1, size = 1, data = data.frame(x = x_original, y= rep(0, length(x_original))) ) +
   geom_ribbon(aes(ymin = ylo, ymax = yup), alpha = 0.2, fill = "#00BFC4") + ylim(0,1) +
   xlab("DDE (µg/L)") + ylab("Probability of preterm birth") + theme_light() +
-  facet_wrap(~setting)
+  facet_wrap(~setting) + theme(text = element_text(family = "serif"))
 cdf_plot_2 =
   ggplot(cdf_LSBP_df, aes(x = xgrid_original, y = y)) +
   geom_line(color = "#F8766D") +
   geom_point(aes(x, y), shape = 108, alpha = 1, size = 1, data = data.frame(x = x_original, y= rep(0, length(x_original))) ) +
   geom_ribbon(aes(ymin = ylo, ymax = yup), alpha = 0.2, fill = "#F8766D") + ylim(0,1) +
   xlab("DDE (µg/L)") + ylab("Probability of preterm birth") + theme_light() +
-  facet_wrap(~setting)
+  facet_wrap(~setting) + theme(text = element_text(family = "serif"))
 
 cdf_plot_12 = cdf_plot_1 / cdf_plot_2
 cdf_plot_12
-#ggsave("pretermbirth_smoking.pdf", cdf_plot_12, width = 9, height = 5)
+ggsave("pretermbirth_smoking_newlegend.pdf", cdf_plot_12, width = 9, height = 5)
 
 
 

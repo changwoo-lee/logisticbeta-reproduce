@@ -13,19 +13,19 @@ Code to reproduce figures, simulation results, and real data analysis results fr
   - `figure/figure_2.R`
 * Figure 3 (LBP prior example and latent LBP):
   - `figure/figure_3.R`
-* Figure 4 (correlation lower bounds of bivariate betas and LB-DDP):
+* Figure 4 (flexibility ranges):
   - `figure/figure_4_and_scatter.R`
 * Figure 5 (preterm birth probability plot for smoking group): 
   - `real_analysis/DDEexposure_smoking.R`
-* Figure B.1 (correlation lower bounds of LB-DDP and bivariate
+* Figure S.1.1 (correlation lower bounds and bivariate
   scatterplots): 
   - `figure/figure_4_and_scatter.R`
-* Figure D.1 (effect of feature map normalization):
-  - `figure/figure_basis.R`
-* Figure D.2 (preterm birth probability plot for nonsmoking group):
+* Figure S.3.2 (preterm birth probability plot for nonsmoking group):
   - `real_analysis/DDEexposure_nonsmoking.R`
 
 ## Codes for reproducing simulation results
+
+### Section 5.1: nonparametric binary regression
 
 Scenario 1, Scenario 2, Scenario 3 correspond to rho = 0.1, 0.2, 0.4, respectively, for data generation settings with different Matern range parameters.
 
@@ -34,6 +34,10 @@ Scenario 1, Scenario 2, Scenario 3 correspond to rho = 0.1, 0.2, 0.4, respective
 - `simul/simul_data_copula.R` and `simul/simul_data_lbp.R` are scripts to generate data under Gaussian copula and latent LBP models, respectively.
 - `run_copula.R` and `run_lbp.R` are scripts to run a single simulation for Gaussian copula and latent LBP models, respectively.
 - Stan code and associated prediction code for the Gaussian copula model can be found in the folder `simul/copula_codes.`
+
+### Section 5.2: Bayesian density regression
+
+See `simul_lbddp/run_lbddpsimul.R`.
 
 ## Codes for reproducing real data analysis results
 
@@ -71,8 +75,10 @@ Scenario 1, Scenario 2, Scenario 3 correspond to rho = 0.1, 0.2, 0.4, respective
 - `R/LBDDP_postprocess.R` is a function to get posterior predictive samples of conditional density and cumulative probability.
 
 5.  `R/LSBP_basis.R` and `R/LSBP_postprocess.R`: functions for logit stick-breaking mixture model, implemented in R.
+
+6. `R/linearDDP.R`: functions for linear DDP, implemented in R.
     
-6. `R/dmvn_lowrankstr.R`: functions for MVN density evaluation with low-rank structure
+7. `R/dmvn_lowrankstr.R`: functions for MVN density evaluation with low-rank structure
 
 ## Example 
 
