@@ -2,7 +2,7 @@
 
 Code to reproduce figures, simulation results, and real data analysis results from the paper 
 
-> Lee, C. J., Zito, A., Sang, H., & Dunson, D. B. (2024). Logistic-beta processes for dependent random probabilities with beta marginals. arXiv preprint arXiv:2402.07048. https://arxiv.org/abs/2402.07048
+> Lee, C. J., Zito, A., Sang, H., & Dunson, D. B. (2025). Logistic-beta processes for dependent random probabilities with beta marginals. Bayesian Analysis (in press), https://doi.org/10.1214/25-BA1541
 
 
 ## Codes for reproducing figures
